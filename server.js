@@ -9,5 +9,5 @@ const PORT = 3001;
 app.use(express.static('public'));
 
 app.listen(PORT, () =>
-  console.log(`Epress Note Taker is listening at http://localhost:${PORT}`)
+  console.log(`Express Note Taker is listening at http://localhost:${PORT}`)
 );
