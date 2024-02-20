@@ -12,14 +12,24 @@ app.use(express.urlencoded({ extended: true })); //express middleware assiting w
 
 
 //href on index.html Get Started button leads to /notes
-//this will present the nottes.html to the user when they press the Get Started button.
+//this will present the notes.html to the user when they press the Get Started button.
 app.get('/notes', (req, res) => {
     res.sendFile(path.join(__dirname, '/notes.html'));  
 });
 
 app.get('/api/notes', (req, res) => {
-    res.json(notesData);
-    console.log(notesData); 
+    res.json(notesData); 
+    console.info(`${req.method} Have retrieved notes data`);   
+})
+
+app.post('/api/notes', (req, res) => {
+  res.json(notesData);    
+  console.info(`${req.method} Have saved notes data`);
+})
+
+app.delete('/api/notes', (req, res) => {
+  res.json(notesData);    
+  console.info(`${req.method} Have saved notes data`);
 })
 
 //running ther server on PORT
