@@ -14,7 +14,7 @@ app.use(express.urlencoded({ extended: true })); //express middleware assiting w
 //href on index.html Get Started button leads to /notes
 //this will present the notes.html to the user when they press the Get Started button.
 app.get('/notes', (req, res) => {
-    res.sendFile(path.join(__dirname, '/notes.html'));  
+    res.sendFile(path.join(__dirname, '/public/notes.html'));  
 });
 
 app.get('/api/notes', (req, res) => {
