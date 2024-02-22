@@ -11,7 +11,7 @@ const path = require('path');
 const PORT = process.env.PORT || 3001;
 
 //this is the routing hub location where the index for all of our api routing will automatically be used
-const api = require('./router');
+const api = require('./routes');
 
 //this initialises the required expressjs 
 const app = express();
@@ -29,12 +29,13 @@ app.use('/api', api);
 
 //GET route for the notes page
 app.get('/notes', (req, res) => {
-  res.sendFile(path.join(__dirname, '/public/notes.html'));
+ console.log(__dirname);
+  res.sendFile(path.join(__dirname, './public/notes.html'));
 });
 
 // GET route for the homepage, catch all for GET requests '*' (wildcards always sit at the end)
 app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, '/public/index.html'));
+  res.sendFile(path.join(__dirname, './public/index.html'));
 });
 
 

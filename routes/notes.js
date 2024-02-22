@@ -11,13 +11,14 @@ const { readFromFile, readAndAppend } = require('../helpers/fsUtils');
 router.get('/', (req, res) => {
     readFromFile('./db/db.json')
     .then(data => res.json(JSON.parse(data)))
-    .catch(err => res.json('Error has occured', err.message))
+    .catch(err => res.json( err.message))
 });
 
 router.post('/', (req, res) => {
+    console.log("post")
     const newNote = {title: req.body.title, text: req.body.text, id: uuid()};
     readAndAppend('./db/db.json', newNote);
-    res.json('new note created', newNote);
+    res.json(newNote);
 });
 
 

@@ -3,6 +3,7 @@
 
 const fs = require('fs'); //node module "file system" assist in reading/writing files
 const util = require('util'); //node module "util" assist in programming tasks ie. inspecting objects
+const path = require('path');
 
 // Converts callback-based asynchronous function into a function that returns a Promise.
 const readFromFile = util.promisify(fs.readFile);
@@ -20,14 +21,17 @@ const writeToFile = (destination, content) =>
 //and restringifies back to json, writing it back into the storage file 
 //using 'content' as the newly inputted content from user
 //using 'file' as the current 'db' json data storage file to be added to 
-const readAndAppend = (content, file) => {
+const readAndAppend = (file, content) => {
+
     fs.readFile(file, 'utf8', (err, data) => {
         if (err) {
             console.error(err);
         } else {
+            console.log("readandappend")
             const parsedData = JSON.parse(data);
             parsedData.push(content);
             writeToFile(file, parsedData);
+
         }
     });
 };
