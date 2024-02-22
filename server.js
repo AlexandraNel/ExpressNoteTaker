@@ -10,9 +10,8 @@ const path = require('path');
 //specifying PORT into a variable as 3001 making it accessible with heroku
 const PORT = process.env.PORT || 3001;
 
-//this is the routing hub location it is the index for all of our api routing 
-const api = require('./router/index');
-
+//this is the routing hub location where the index for all of our api routing will automatically be used
+const api = require('./router');
 
 //this initialises the required expressjs 
 const app = express();
@@ -28,16 +27,16 @@ app.use(express.static('public'));
 //notes route will therefore be /api/notes
 app.use('/api', api);
 
-
-// GET route for the homepage, catch all for GET requests '*'
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, '/public/index.html'));
-});
-
 //GET route for the notes page
 app.get('/notes', (req, res) => {
   res.sendFile(path.join(__dirname, '/public/notes.html'));
 });
+
+// GET route for the homepage, catch all for GET requests '*' (wildcards always sit at the end)
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '/public/index.html'));
+});
+
 
 //running ther server on PORT
 app.listen(PORT, () => console.log(`Running Express Server on Port ${PORT}`));

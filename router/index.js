@@ -9,12 +9,4 @@ const notesRouter = require('./notes');
 //utilises notes route. notes route will therefore be /api/notes as we are inside /api hub
 router.use('/notes', notesRouter);
 
-
-
-// is this common syntax?
-// const express = require('express');
-// const router = express.Router();
-
-
-
 module.exports = router;
